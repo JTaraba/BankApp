@@ -48,6 +48,8 @@ public class Gui extends Application {
         Label welcome = new Label("Josh's Bank");
         welcome.setFont(Font.font("Copperplate", FontWeight.NORMAL, 25));
         
+        Label invalid = new Label("Invalid Login");
+        
         
         //positioning on the grid
         layout.setAlignment(Pos.CENTER);
@@ -79,6 +81,7 @@ public class Gui extends Application {
                 } 
                   else{
                     System.out.println("Invalid Login");
+                    layout.add(invalid, 1, 3);
                 }
             }
         });
@@ -137,6 +140,10 @@ public class Gui extends Application {
         Button addC = new Button("Add");
         Button backButton = new Button("Back");
         
+        Label addedText = new Label("Customer Added!");
+        
+        GridPane addPane = new GridPane();
+        
         addC.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -144,6 +151,7 @@ public class Gui extends Application {
                 String password = passField.getText();
                 if (username != null && password != null) {
                     josh.addCustomer(username, password);
+                    addPane.add(addedText, 1, 3);
                 }
                 else {
                     System.out.println("urname and pw gotta be right");
@@ -155,7 +163,7 @@ public class Gui extends Application {
             managerWindow(primaryStage, josh);
         });
         
-        GridPane addPane = new GridPane();
+        
         addPane.setAlignment(Pos.CENTER);
         addPane.add(user, 0, 1);
         addPane.add(userField, 1, 1);
@@ -179,6 +187,11 @@ public class Gui extends Application {
         Button deleteC = new Button("Delete");
         Button backButton = new Button("Back");
         
+        Label deleteText = new Label("Customer Deleted");
+        
+        GridPane addPane = new GridPane();
+
+        
         deleteC.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -186,6 +199,7 @@ public class Gui extends Application {
                 String password = passField.getText();
                 if (username != null && password != null) {
                     josh.deleteCustomer(username, password);
+                    addPane.add(deleteText, 1, 3);
                 }
                 else {
                     System.out.println("urname and pw gotta be right");
@@ -197,7 +211,6 @@ public class Gui extends Application {
             managerWindow(primaryStage, josh);
         });
         
-        GridPane addPane = new GridPane();
         addPane.setAlignment(Pos.CENTER);
         addPane.add(user, 0, 1);
         addPane.add(userField, 1, 1);
@@ -369,6 +382,7 @@ public class Gui extends Application {
         
         Label levelLabel = new Label("Level: " + josh.level());
         Label balLabel = new Label("Balance: "+ josh.getBalance());
+       
         
         purchase.setOnAction(new EventHandler<ActionEvent>(){
             @Override
